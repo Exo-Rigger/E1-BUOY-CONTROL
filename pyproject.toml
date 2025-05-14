@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "e1-control"
+dynamic = ["version"]
+description = "E1 Data Buoy Instrument Management and Control Toolkit"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE.txt"}
+keywords = ["pml", "marine", "science", "observation", "buoy"]
+authors = [
+  {name = "Matthew Taylor", email = "mtay@pml.ac.uk"},
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+dependencies = [
+    "lxml>=4.6.3",
+    "Markdown>=3.3.4",
+    "pexpect>=4.8.0",
+    "pytest>=6.2.4",
+    "Cheetah3>=3.2.6",
+    "cookiecutter>=2.2.3",
+    "gcovr>=6.0",
+    "urllib3<2.0.0",
+    "requests>=2.31.0",
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+dev = [
+    "black",
+    "pylama",
+    "pylint",
+    "pre-commit",
+    "sphinx",
+    "sphinxcontrib.mermaid",
+    "sphinx-rtd-theme",
+    "sphinx-autoapi",
+    "sphinx-autoapi",
+    "recommonmark",
+]
+
+[project.urls]
+Homepage = "https://www.westernchannelobservatory.org.uk/buoys_E1.php"
+Documentation = "https://gitlab.rsg.pml.ac.uk/marine-technology-autonomy/e1-buoy/software/-/tree/main/docs"
+Repository = "https://gitlab.rsg.pml.ac.uk/marine-technology-autonomy/e1-buoy/software"
+
+####
+# Entry Points:
+#
+# Defines the list of entry-level (scripts) that are defined by this package. This allows
+# standard use of utilities that ship as part of F prime.
+####
+[project.scripts]
+e1-imc-util = "e1-imc.util.__main__:main"
+e1-imc-version-check = "e1-imc.util.versioning:main"
+
+####
+# setuptools_scm dynamically generates version number from git, as well as automatically
+# include all data files tracked by git (e.g. cookiecutter templates).
+# See https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+####
+[tool.setuptools_scm]
+
+
+####
+# Additional notes
+#
+# With regards to the configuration of the older versions of setup.py:
+# - package_data: included by default, and setuptools_scm will automatically include all files tracked by git
+# - package discovery (src/): setuptools will automatically discover all packages as we use the src-layout
+#
+# Reference:
+# - https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+# - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout
+####
